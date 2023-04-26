@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="./style.css" />
+    <title>Tic Tac Toe Game</title>
+  </head>
+  <body>
+    <div class="name-area" id="name-area">
+      <form action="#">
+        <h1>Tic Tac Toe Game</h1>
+        <label for="name">Enter your name to play the game</label>
+        <input required type="text" name="name" id="name" />
+        <input id="nameSubmit" type="submit" />
+      </form>
+    </div>
+    <div class="container" id="container">
+      <button value="A1" class="item"></button>
+      <button value="A2" class="item"></button>
+      <button value="A3" class="item"></button>
+      <button value="B1" class="item"></button>
+      <button value="B2" class="item"></button>
+      <button value="B3" class="item"></button>
+      <button value="C1" class="item"></button>
+      <button value="C2" class="item"></button>
+      <button value="C3" class="item"></button>
+    </div>
+    <div class="control-panel" id="control-panel">
+      <div class="row">
+        <div class="col">
+          <h3 id="playerName"></h3>
+          <p id="pOwn"></p>
+        </div>
+        <div class="col">
+          <h3 id="">DRAW</h3>
+          <p id="nDraw"></p>
+        </div>
+        <div class="col">
+          <h3 id="">AI (O)</h3>
+          <p id="AIOwn"></p>
+        </div>
+      </div>
+      <h2 id="winner"></h2>
+      <input type="button" value="Reload" id="reload" />
+    </div>
+    <script src="./script.js"></script>
+  </body>
+</html>

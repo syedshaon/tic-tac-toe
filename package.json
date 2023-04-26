@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "tic-tac-toe-minimax": "^1.0.8"
+  },
+  "type": "module",
+  "name": "tic-tac-toe",
+  "version": "1.0.0",
+  "main": "script.js",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Mashiur",
+  "license": "ISC",
+  "description": ""
+}
