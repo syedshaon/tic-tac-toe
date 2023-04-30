@@ -1,16 +1,32 @@
 {
-  "dependencies": {
-    "tic-tac-toe-minimax": "^1.0.8"
-  },
-  "type": "module",
   "name": "tic-tac-toe",
   "version": "1.0.0",
-  "main": "script.js",
-  "devDependencies": {},
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "watch": "webpack --watch",
+    "start": "webpack serve --open",
+    "server": "node server.js",
+    "build": "webpack"
   },
   "author": "Mashiur",
   "license": "ISC",
-  "description": ""
+  "devDependencies": {
+    "@babel/core": "^7.21.5",
+    "@babel/preset-env": "^7.21.5",
+    "babel-loader": "^9.1.2",
+    "css-loader": "^6.7.3",
+    "sass": "^1.62.1",
+    "sass-loader": "^13.2.2",
+    "style-loader": "^3.3.2",
+    "webpack": "^5.81.0",
+    "webpack-cli": "^5.0.2",
+    "webpack-dev-middleware": "^6.0.2",
+    "webpack-dev-server": "^4.13.3"
+  },
+  "dependencies": {
+    "tic-tac-toe-minimax": "^1.0.8",
+    "html-webpack-plugin": "^5.5.1"
+  }
 }

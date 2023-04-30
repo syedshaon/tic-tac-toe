@@ -1,3 +1,6 @@
+import "./style.scss";
+import Minimax from "tic-tac-toe-minimax";
+
 const person = (name) => {
   const allMoves = [];
 
@@ -69,14 +72,14 @@ showResultsInDom();
 // Logic to find the winner
 const findWinner = (p1Moves, aiMoves) => {
   const winingComb = [
-    ["A1", "A2", "A3"],
-    ["B1", "B2", "B3"],
-    ["C1", "C2", "C3"],
-    ["A1", "B1", "C1"],
-    ["A2", "B2", "C2"],
-    ["A3", "B3", "C3"],
-    ["A3", "B2", "C1"],
-    ["A1", "B2", "C3"],
+    [0, 1, 2],
+    [3, 4, 5],
+    [6, 7, 8],
+    [0, 3, 6],
+    [1, 4, 7],
+    [2, 5, 8],
+    [2, 4, 6],
+    [0, 4, 8],
   ];
 
   winingComb.forEach((comb) => {
@@ -125,34 +128,80 @@ const findWinner = (p1Moves, aiMoves) => {
 // findWinner(samplePersonMove, AIMove);
 
 // Dom Control
-const possibleMoves = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
+// const possibleMoves = ["A1", "A2", "A3", "B1", "B2", "B3", "C1", "C2", "C3"];
+const possibleMoves = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+//  const board = [0, 1, aiPlayer, 3, huPlayer, huPlayer, 6, 7, 8];
+const board = [0, 1, 2, 3, 4, 5, 6, 7, 8];
+const { ComputerMove } = Minimax;
+
+const huPlayer = "X";
+const aiPlayer = "O";
+const symbols = {
+  huPlayer: huPlayer,
+  aiPlayer: aiPlayer,
+};
+
 const samplePersonMove = [];
 const AIMove = [];
 
 document.querySelectorAll("button").forEach((b) => {
   b.addEventListener("click", (e) => {
     // Make the button not clickable in the future
+    // console.log(e.target.dataset.key);
     e.target.disabled = true;
-    samplePersonMove.push(e.target.value);
+    samplePersonMove.push(parseInt(e.target.value));
+
+    board[parseInt(e.target.value)] = symbols.huPlayer;
+
     e.target.innerText = "X";
     findWinner(samplePersonMove, AIMove);
 
-    const index = possibleMoves.indexOf(e.target.value);
+    const index = possibleMoves.indexOf(parseInt(e.target.value));
     possibleMoves.splice(index, 1);
+
+    console.log(board);
+    // if (!personOneWinner && !aiWinner) {
+    //   setTimeout(() => {
+    //     if (possibleMoves.length) {
+    //       const numberOfPossibleMoves = possibleMoves.length;
+    //       const ran = Math.floor(Math.random() * numberOfPossibleMoves);
+    //       //   console.log(possibleMoves[ran]);
+    //       const aiMove = possibleMoves[ran];
+
+    //       AIMove.push(aiMove);
+    //       findWinner(samplePersonMove, AIMove);
+    //       possibleMoves.splice(ran, 1);
+    //       document.querySelector(`button[value="${aiMove}"]`).innerText = "O";
+    //       document.querySelector(`button[value="${aiMove}"]`).disabled = true;
+    //     }
+    //   }, 400);
+    // }
 
     if (!personOneWinner && !aiWinner) {
       setTimeout(() => {
         if (possibleMoves.length) {
-          const numberOfPossibleMoves = possibleMoves.length;
-          const ran = Math.floor(Math.random() * numberOfPossibleMoves);
-          //   console.log(possibleMoves[ran]);
-          const aiMove = possibleMoves[ran];
+          // Implementing minmax logarithm
 
-          AIMove.push(aiMove);
+          const difficulty = "Hard";
+
+          const nextMove = ComputerMove(board, symbols, difficulty);
+          board[nextMove] = symbols.aiPlayer;
+          console.log(nextMove);
+
+          //const aiMove = board[nextMove];
+
+          AIMove.push(nextMove);
           findWinner(samplePersonMove, AIMove);
-          possibleMoves.splice(ran, 1);
-          document.querySelector(`button[value="${aiMove}"]`).innerText = "O";
-          document.querySelector(`button[value="${aiMove}"]`).disabled = true;
+          // const indexOfNextMove = possibleMoves.findIndex(nextMove);
+
+          // possibleMoves.splice(indexOfNextMove, 1);
+
+          const index = possibleMoves.indexOf(nextMove);
+          possibleMoves.splice(index, 1);
+
+          document.querySelector(`button[value="${nextMove}"]`).innerText = "O";
+          document.querySelector(`button[value="${nextMove}"]`).disabled = true;
+          console.log(board);
         }
       }, 400);
     }
