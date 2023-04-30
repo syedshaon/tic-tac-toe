@@ -288,3 +288,14 @@ input#name:-internal-autofill-selected {
     cursor: pointer;
   }
 }
+
+.unbeatable {
+  position: fixed;
+  top: 30px;
+  right: 30px;
+  a {
+    color: orange;
+    font-size: 22px;
+    text-decoration: none;
+  }
+}
